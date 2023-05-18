@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foguetao zika fulminante</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            background: linear-gradient(#1d18b7, #9198e5);
+            overflow: hidden;
+        }
+
+        .foguete {
+            position: absolute;
+            top: 650px;
+            left: 750px;
+            z-index: 2;
+        }
+
+        .mundo{
+            position: absolute;
+            left: 745px;
+            top: 705px
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="foguetis" src="foguete.gif" width="80px" class="foguete">
+    <img  src="mundo.webp" width="180px" class="mundo">
+</body>
+
+<script src="jquery-3.3.1.min.js"></script>
+
+<script>
+
+    data = new Date()
+    tempo_inicial = data.getTime()
+
+    temporizador = setTimeout(Subir, 1000)
+    x = 450
+    y = 10
+    TOPO = ""
+    ESQUERDA = ""
+    function Subir() {
+        TOPO = y + "px"
+        $("#foguetis").animate({ top: TOPO }, 1000)
+        temporizador = null
+        temporizador = setInterval(Descer,200)
+    }
+    function Descer(){
+        y = y + 20
+        x = 750
+        if (y > 650){
+        y = 650}
+        TOPO = y + "px"
+        ESQUERDA = x + "px"
+        $("#foguetis").animate({left: ESQUERDA, top: TOPO }, 100)
+    }
+
+    document.onkeydown = Pega_Tecla;
+
+    function Pega_Tecla(e) 
+{	
+    e = e || window.event;
+
+    tecla = e.keyCode;
+    console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
+    data = new Date()
+    tempo_final = data.getTime()
+
+    if(tempo_final - tempo_inicial > 1000){
+    if(tecla == 37){
+        x = x - 50
+    }
+    if(tecla == 39){
+        x = x + 50
+    }}
+}
+
+</script>
+
+</html>

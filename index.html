@@ -27,30 +27,74 @@
             left: 745px;
             top: 705px
         }
+
     </style>
 </head>
 
 <body>
-
-    <img id="foguetis" src="foguete.gif" width="80px" class="foguete">
+    <img id="foguetis" src="foguete.gif" width="80px" class="foguete" onclick="playAudio();">
     <img  src="mundo.webp" width="180px" class="mundo">
+
+    <audio id="audio1">
+  <source src="contagem_regressiva.mp3" type="audio/mp3">
+</audio>
+
+<audio id="audio2">
+  <source src="lancamento_foguete.mp3" type="audio/mp3">
+</audio>
+
+<audio id="audio3">
+  <source src="we-have-a-problem.mp3" type="audio/mp3">
+</audio>
 </body>
 
 <script src="jquery-3.3.1.min.js"></script>
 
 <script>
 
+
+        function playAudio() {
+            contagem = document.getElementById('audio1');
+           contagem.play();
+        }
+
+        function playAudio2() {
+            lanca = document.getElementById('audio2');
+            lanca.play();
+        }
+        setTimeout(playAudio2, 20000)
+
+        function pausarAudio() {
+            contagem = document.getElementById('audio1');
+            contagem.pause()
+        }
+        setTimeout(pausarAudio, 20000)
+
+        function pausarAudio2() {
+            lanca = document.getElementById('audio2');
+            lanca.pause()
+        }
+        setTimeout(pausarAudio2, 35000)
+        
+        function playAudio3() {
+            queda = document.getElementById('audio3');
+            queda.play();
+        }
+        setTimeout(playAudio3, 35000)
+
+
+
     data = new Date()
     tempo_inicial = data.getTime()
 
-    temporizador = setTimeout(Subir, 1000)
+    temporizador = setTimeout(Subir, 17000)
     x = 750
     y = 10
     TOPO = ""
     ESQUERDA = ""
     function Subir() {
         TOPO = y + "px"
-        $("#foguetis").animate({ top: TOPO }, 1000)
+        $("#foguetis").animate({ top: TOPO }, 18000)
         temporizador = null
         temporizador = setInterval(Descer,200)
     }
@@ -60,7 +104,7 @@
         y = 650}
         TOPO = y + "px"
         ESQUERDA = x + "px"
-        $("#foguetis").animate({left: ESQUERDA, top: TOPO }, 100)
+        $("#foguetis").animate({left: ESQUERDA, top: TOPO }, 1000)
     }
 
     document.onkeydown = Pega_Tecla;
